@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{70DADAFF-DA26-46E9-A2C9-2768B9929DC8}</ProjectGuid>
+    <ProjectGuid>{4DCA7365-FE23-4056-8611-FA88E617BF06}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TestApp</RootNamespace>
-    <AssemblyName>TestApp</AssemblyName>
+    <RootNamespace>Main</RootNamespace>
+    <AssemblyName>Main</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,13 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{80d46d60-3946-44e9-8f19-14b85e210bf9}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PatternBuild\PatternBuilder.csproj">
-      <Project>{95b8f5d3-2d38-4dbf-810d-c9796405ce4a}</Project>
-      <Name>PatternBuilder</Name>
+    <ProjectReference Include="..\MainMenu\MainMenu.csproj">
+      <Project>{47150a7e-6eae-4fea-9b70-db442ff6fc32}</Project>
+      <Name>MainMenu</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
