@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
+using PatternBuild;
 
-namespace TestApp
+namespace MainMenu
 {
     public class Program
     {
-
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             MainMenu();
         }
@@ -18,39 +19,25 @@ namespace TestApp
         {
             while (true)
             {
+                Options options = new Options();
                 Console.Clear();
-                Console.Write("Enter Letter from O, X, Y: ");
-                switch (Console.ReadLine().ToUpper())
+                Console.WriteLine("Enter Letter from O, X, Y Or Z: ");
+                Console.WriteLine("Press ESC to exit");
+                var input = Console.ReadLine().ToUpper();
+                if (input == "" || input == " " || input == null)
                 {
-                    case "Z":
-                        Console.Clear();
-                        Console.WriteLine("Loading...");
-                        DrawZ();
-                        break;
-                    case "X":
-                        Console.Clear();
-                        Console.WriteLine("Loading...");
-                        DrawX();
-                        break;
-                    case "Y":
-                        Console.Clear();
-                        Console.WriteLine("Loading...");
-                        DrawY();
-                        break;
-                    case "O":
-                        Console.Clear();
-                        Console.WriteLine("Loading...");
-                        DrawO();
-                        break;
-                    default:
-                        Environment.Exit(0);
-                        break;
+                    Console.Clear();
+                    Console.WriteLine("Invalid Input");
+                    MainMenu();
                 }
+                options.Pattern = input;
+                Console.Clear();
+                Console.WriteLine("Loading...");
+                GetCount(options);
             }
-
         }
 
-        private static void DrawZ()
+        private static void GetCount(Options options)
         {
             Console.WriteLine("Enter a Non Negative Odd Number ex 3, 5, 7: ");
             var cnt = int.Parse(Console.ReadLine());
@@ -58,120 +45,58 @@ namespace TestApp
             //check if cnt is non negative and odd number
             if (cnt < 0 || (cnt % 2 == 0))
             {
+                Console.Clear();
                 Console.WriteLine("Number input is negative or even kindly input another number");
-                DrawZ();
+                GetCount(options);
             }
+            options.Count = cnt;
 
-            int row, column;
-            for (row = 0; row <= cnt; row++)
+            switch (options.Pattern)
             {
-                for (column = 0; column <= cnt; column++)
-                {
-                    if (((row == 0 || row == cnt) && column >= 0 && column <= cnt) || row + column == cnt)
-                    {
-                        Console.Write("*");
-                    }
-                    else
-                    {
-                        Console.Write(" ");
-                    }
-                }
-                Console.Write("\n");
+                case "Z":
+                    DrawZ(options);
+                    break;
+                case "X":
+                    DrawX(options);
+                    break;
+                case "Y":
+                    DrawY(options);
+                    break;
+                case "O":
+                    DrawO(options);
+                    break;
+                default:
+                    MainMenu();
+                    break;
             }
-            Console.Read();
         }
 
-        private static void DrawX()
+        private static void DrawZ(Options options)
         {
-            Console.WriteLine("Enter a Non Negative Odd Number ex 3, 5, 7: ");
-            var cnt = int.Parse(Console.ReadLine());
-
-            //check if cnt is non negative and odd number
-            if (cnt < 0 || (cnt % 2 == 0))
-            {
-                Console.WriteLine("Number input is negative or even kindly input another number");
-                DrawX();
-            }
-
-            int row, column;
-            for (row = 0; row < cnt; row++)
-            {
-                for (column = 0; column < cnt; column++)
-                {
-                    if (row == column || row + column == cnt - 1)
-                    {
-                        Console.Write("*");
-                    }
-                    else
-                    {
-                        Console.Write(" ");
-                    }
-                }
-                Console.Write("\n");
-            }
-    
+            Patterns Patterns = new Patterns();
+            Patterns.DrawZ(options.Count);
             Console.Read();
         }
 
-        private static void DrawY()
+        private static void DrawX(Options options)
         {
-            Console.WriteLine("Enter a Non Negative Odd Number ex 3, 5, 7: ");
-            var cnt = int.Parse(Console.ReadLine());
-
-            //check if cnt is non negative and odd number
-            if (cnt < 0 || (cnt % 2 == 0))
-            {
-                Console.WriteLine("Number input is negative or even kindly input another number");
-                DrawY();
-            }
-
-            int row, column;
-            for (row = 0; row <= cnt; row++)
-            {
-                for (column = 0; column <= cnt; column++)
-                {
-                    if (((column == 0 || column == cnt) && row < 2) || row == column && column > 0 && column < 4 || (column == 4 && row == 2) || ((column == 3) && row > 3))
-                        Console.Write("*");
-                    else
-                        Console.Write(" ");
-                }
-                Console.Write("\n");
-            }
-
+            Patterns Patterns = new Patterns();
+            Patterns.DrawX(options.Count);
             Console.Read();
         }
 
-
-        private static void DrawO()
+        private static void DrawY(Options options)
         {
-            Console.WriteLine("Enter a Non Negative Odd Number ex 3, 5, 7: ");
-            var cnt = int.Parse(Console.ReadLine());
-
-            //check if cnt is non negative and odd number
-            if (cnt < 0 || (cnt % 2 == 0))
-            {
-                Console.WriteLine("Number input is negative or even kindly input another number");
-                DrawO();
-            }
-
-            int row, column;
-            for (row = 0; row <= cnt; row++)
-            {
-                for (column = 0; column <= cnt; column++)
-                {
-                    if (((column == 0 || column == (cnt-1)) && row != 0 && row != cnt) || ((row == 0 || row == cnt) && column > 0 && column < (cnt - 1)))
-                    {
-                        Console.Write("*");
-                    }
-                    else
-                    {
-                        Console.Write(" ");
-                    }
-                }
-                Console.Write("\n");
-            }
+            Patterns Patterns = new Patterns();
+            Patterns.DrawY(options.Count);
             Console.Read();
         }
 
+        private static void DrawO(Options options)
+        {
+            Patterns Patterns = new Patterns();
+            Patterns.DrawO(options.Count);
+            Console.Read();
+        }
     }
 }
