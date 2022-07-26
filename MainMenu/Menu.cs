@@ -18,7 +18,7 @@ namespace MainMenu
             {
                 Options options = new Options();
                 Console.WriteLine("Enter Letter from O, X, Y Or Z: ");
-                string[] patternOptions = { "X", "Y", "0", "Z" };
+                string[] patternOptions = { "X", "Y", "O", "Z" };
                 var input = Console.ReadLine().ToUpper();
                 if (input == "" || input == " " || input == null || !patternOptions.Contains(input))
                 {
