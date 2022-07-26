@@ -56,14 +56,18 @@ namespace PatternBuild
         public static void DrawY(int cnt)
         {
             int row, column;
-            for (row = 0; row <= cnt; row++)
+            for (row = 0; row < cnt; row++)
             {
-                for (column = 0; column <= cnt; column++)
+                for (column = 0; column < cnt; column++)
                 {
-                    if (((column == 0 || column == cnt) && row < 2) || row == column && column > 0 && column < 4 || (column == 4 && row == 2) || ((column == 3) && row > 3))
+                    if ((row == column || row + column == cnt - 1) && row < ((cnt/2)+1) || (column == (cnt/2) && row >= ((cnt / 2) + 1)))
+                    {
                         Console.Write("*");
+                    }
                     else
+                    {
                         Console.Write(" ");
+                    }
                 }
                 Console.Write("\n");
             }

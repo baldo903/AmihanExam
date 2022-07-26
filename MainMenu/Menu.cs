@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using PatternBuild;
+using System.Linq;
 
 namespace MainMenu
 {
@@ -16,15 +17,16 @@ namespace MainMenu
             while (isOpen)
             {
                 Options options = new Options();
-                Console.Clear();
                 Console.WriteLine("Enter Letter from O, X, Y Or Z: ");
+                string[] patternOptions = { "X", "Y", "0", "Z" };
                 var input = Console.ReadLine().ToUpper();
-                if (input == "" || input == " " || input == null)
+                if (input == "" || input == " " || input == null || !patternOptions.Contains(input))
                 {
                     Console.Clear();
                     Console.WriteLine("Invalid Input");
                     StartMenu();
                 }
+
                 options.Pattern = input;
                 Console.Clear();
                 Console.WriteLine("Loading...");
@@ -61,6 +63,7 @@ namespace MainMenu
                     DrawO(options);
                     break;
                 default:
+                    Console.Clear();
                     StartMenu();
                     break;
             }
